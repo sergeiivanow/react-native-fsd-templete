@@ -1,0 +1,8 @@
+{
+  "name": "rnn-redux-toolkit-starter",
+  "version": "0.0.1",
+  "description": "RNN Redux Toolkit Starter",
+  "repository": "https://github.com/sergeiivanow/rnn-redux-toolkit-starter.git",
+  "author": "Sergei Ivanov <to@codesign.su>",
+  "license": "MIT"
+}
