@@ -1,8 +1,9 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import appearanceReducer from 'features/changeAppearance/model';
 
 export const store = configureStore({
   reducer: {
-    theme: () => null,
+    appearance: appearanceReducer,
   },
 });
 

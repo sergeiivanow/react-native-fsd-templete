@@ -1,12 +1,16 @@
 import React from 'react';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {SwitcherAppearance} from 'features/changeAppearance/ui';
 import {Font} from 'shared/ui';
 
-const Home = () => {
+const Settings = () => {
   return (
-    <View style={styles.container}>
-      <Font size="medium">{'Medium size'}</Font>
-    </View>
+    <>
+      <View style={styles.container}>
+        <Font>{'Settings'}</Font>
+        <SwitcherAppearance />
+      </View>
+    </>
   );
 };
 
@@ -18,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Settings;
