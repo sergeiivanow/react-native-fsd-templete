@@ -4,7 +4,7 @@ import {useCalcFluidSize} from '../../lib/hooks';
 import {
   useTheme,
   FontSizes,
-  FamilyName,
+  FamilyNames,
   FontWeights,
   Colors,
 } from '@emotion/react';
@@ -12,7 +12,7 @@ import styled from '@emotion/native';
 
 interface FontProps {
   size?: FontSizes;
-  familyName?: FamilyName;
+  familyNames?: FamilyNames;
   weight?: FontWeights;
   color?: Colors;
   children?: React.ReactNode;
@@ -25,7 +25,7 @@ const Text = styled.Text`
 
 export function Font({
   size,
-  familyName,
+  familyNames,
   weight,
   color,
   children,
@@ -38,7 +38,7 @@ export function Font({
     <Text
       style={{
         fontFamily:
-          theme.fontFamilies[familyName ?? 'roboto'][weight ?? 'regular'],
+          theme.fontFamily[familyNames ?? 'roboto'][weight ?? 'regular'],
         fontSize: calc(theme.fontSizes[size ?? 'medium']),
         lineHeight: calc(theme.fontSizes[size ?? 'medium']),
         color: theme.colors[color ?? 'textDefault'],

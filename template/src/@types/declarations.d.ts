@@ -2,7 +2,7 @@ import '@emotion/react';
 import {
   fontSizes,
   fontWeights,
-  familyName,
+  familyNames,
   lineHeights,
   spaces,
   sizes,
@@ -12,12 +12,12 @@ import {
 declare module '@emotion/react' {
   export type FontSizes = keyof typeof fontSizes;
   export type FontWeights = keyof typeof fontWeights;
-  export type FamilyName = keyof typeof familyName;
+  export type FamilyNames = keyof typeof familyNames;
   export type LineHeights = keyof typeof lineHeights;
   export type Spaces = keyof typeof spaces;
   export type Sizes = keyof typeof sizes;
   export type Colors = keyof typeof colors;
-  type FontFamilies = {
+  type FontFamily = {
     [key in FontWeights]: string;
   };
 
@@ -25,9 +25,9 @@ declare module '@emotion/react' {
     fontWeights: {
       [key in FontWeights]: string;
     };
-    familyName: {[key in FamilyName]: string};
-    fontFamilies: {
-      [key in FamilyName]: FontFamilies;
+    familyNames: {[key in FamilyNames]: string};
+    fontFamily: {
+      [key in FamilyNames]: FontFamily;
     };
     fontSizes: {[key in FontSizes]: string};
     lineHeights: {

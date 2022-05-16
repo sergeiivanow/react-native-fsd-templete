@@ -1,6 +1,6 @@
 import {pallete} from './pallete';
 
-export const familyName = {
+export const familyNames = {
   roboto: 'roboto',
 };
 
@@ -10,7 +10,7 @@ export const fontWeights = {
   bold: 'bold',
 };
 
-export const fontFamilies = {
+export const fontFamily = {
   roboto: {
     regular: 'Roboto-Regular',
     medium: 'Roboto-Medium',
