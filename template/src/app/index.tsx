@@ -7,10 +7,10 @@ import {welcomeRoot} from 'shared/navigation';
 import {store} from './store';
 import {themes} from './theme';
 
-Screens.forEach((ScreenComponent: React.ReactNode, key: string) => {
+Screens.forEach((ScreenComponent: React.FC, key: string) => {
   Navigation.registerComponent(
     key,
-    props => withProviders(<ScreenComponent {...props} />),
+    () => props => withProviders(<ScreenComponent {...props} />),
     () => ScreenComponent,
   );
 });
