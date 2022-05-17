@@ -1,30 +1,17 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import {Navigation} from 'react-native-navigation';
-import {StatusBar, StyleSheet, Text, View, Button} from 'react-native';
-import {useTheme} from '@emotion/react';
-import {mainRoot, welcomeRoot} from 'shared/navigation';
-import {useCalcFluidSize} from 'shared/lib/hooks';
-import {Font} from 'shared/ui';
+import {StyleSheet, View, Button} from 'react-native';
+import {mainRoot} from 'shared/navigation';
 
 const Welcome = () => {
-  const theme = useTheme();
-  const size = useCalcFluidSize();
-
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor: 'pink',
-        },
-      ]}>
+    <View style={styles.container}>
       <Button
-        title="Welcome"
+        title="Login"
         onPress={() => {
           Navigation.setRoot(mainRoot);
         }}
       />
-      <Font weight="bold">{'Font text'}</Font>
     </View>
   );
 };

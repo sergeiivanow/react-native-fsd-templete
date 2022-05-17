@@ -1,6 +1,6 @@
 import React from 'react';
-import {AppearanceProvider} from '../wrappers/AppearanceProvider';
+import {EmotionProvider} from '../wrappers/EmotionProvider';
 
 export const withEmotion = (component: () => React.ReactNode) => () => {
-  return <AppearanceProvider>{component}</AppearanceProvider>;
+  return <EmotionProvider>{component}</EmotionProvider>;
 };

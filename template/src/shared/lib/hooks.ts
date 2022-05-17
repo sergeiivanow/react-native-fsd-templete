@@ -1,4 +1,5 @@
 import {useWindowDimensions} from 'react-native';
+import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 export function useCalcFluidSize(foo = 300) {
   const {width, height} = useWindowDimensions();
@@ -13,3 +14,6 @@ export function useCalcFluidSize(foo = 300) {
 
   return size;
 }
+
+export const useAppDispatch = () => useDispatch<App.Dispatch>();
+export const useAppSelector: TypedUseSelectorHook<App.RootState> = useSelector;
