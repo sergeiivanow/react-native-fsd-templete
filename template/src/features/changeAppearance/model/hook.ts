@@ -6,7 +6,9 @@ import {useTheme} from '@emotion/react';
 import {Navigation} from 'react-native-navigation';
 import {mainRoot} from 'shared/navigation';
 
-export function useAppearance() {
+export function useAppearance(
+  {withEffect}: {withEffect: boolean} = {withEffect: false},
+) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const themeScheme = useAppSelector(
@@ -15,11 +17,11 @@ export function useAppearance() {
   const didMount = useRef(false);
 
   useEffect(() => {
-    if (!didMount?.current) {
-      didMount.current = true;
+    if (!withEffect) {
       return;
     }
-    if (Object.keys(theme).length === 0) {
+    if (!didMount?.current) {
+      didMount.current = true;
       return;
     }
     Navigation.setDefaultOptions({
@@ -56,7 +58,7 @@ export function useAppearance() {
       },
     });
     Navigation.setRoot(mainRoot);
-  }, [theme]);
+  }, [theme, withEffect]);
 
   function changeThemeScheme() {
     dispatch(change(themeScheme === 'dark' ? 'light' : 'dark'));
