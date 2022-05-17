@@ -1,10 +1,10 @@
 import {Theme} from '@emotion/react';
 import * as defaulTheme from './defaultTheme';
 import * as darkTheme from './darkTheme';
+import {ThemeScheme} from 'features/types';
 
 export const themes: {
-  light: Theme;
-  dark: Theme;
+  [key in NonNullable<ThemeScheme>]: Theme;
 } = {
   light: {
     ...defaulTheme,

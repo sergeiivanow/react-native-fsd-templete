@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
+import {ThemeScheme} from '../../types';
 export interface AppearanceState {
-  theme: string | null;
+  theme: ThemeScheme;
 }
 
 const initialState: AppearanceState = {
@@ -12,7 +12,7 @@ export const appearanceSlice = createSlice({
   name: 'appearance',
   initialState,
   reducers: {
-    change: (state, action: PayloadAction<string>) => {
+    change: (state, action: PayloadAction<ThemeScheme>) => {
       state.theme = action.payload;
     },
   },

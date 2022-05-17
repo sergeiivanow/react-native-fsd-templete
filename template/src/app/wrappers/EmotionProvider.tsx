@@ -9,9 +9,5 @@ interface EmotionProviderProps {
 
 export const EmotionProvider = ({children}: EmotionProviderProps) => {
   const {themeScheme} = useAppearance();
-  return (
-    <ThemeProvider theme={themeScheme === 'light' ? themes.light : themes.dark}>
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={themes[themeScheme]}>{children}</ThemeProvider>;
 };

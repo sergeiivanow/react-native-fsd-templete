@@ -6,7 +6,7 @@ export function useAppearance() {
   const systemColorScheme = useColorScheme();
   const dispatch = useAppDispatch();
   const themeScheme = useAppSelector(
-    state => state.appearance.theme ?? systemColorScheme,
+    state => state.appearance.theme ?? systemColorScheme ?? 'light',
   );
 
   function changeThemeScheme() {
