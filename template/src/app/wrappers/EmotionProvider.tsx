@@ -1,6 +1,6 @@
 import React from 'react';
 import {ThemeProvider} from '@emotion/react';
-import {themes} from '../theme';
+import {themes} from '../../shared/theme';
 import {useAppearance} from 'features/changeAppearance/model';
 
 interface EmotionProviderProps {

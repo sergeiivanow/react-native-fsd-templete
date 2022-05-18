@@ -7,7 +7,7 @@ import {
   spaces,
   sizes,
   colors,
-} from 'app/theme/defaultTheme';
+} from 'shared/theme/defaultTheme';
 
 declare module '@emotion/react' {
   export type FontSizes = keyof typeof fontSizes;

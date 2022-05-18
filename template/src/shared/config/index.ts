@@ -1,5 +1,5 @@
 export enum ScreenRoutes {
-  Home = 'com.HomeScreen',
-  Settings = 'com.Settings',
-  Welcome = 'com.Welcome',
+  Home = 'screen.HomeScreen',
+  Settings = 'screen.Settings',
+  Welcome = 'screen.Welcome',
 }

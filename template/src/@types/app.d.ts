@@ -8,4 +8,5 @@ declare module App {
     unknown,
     import('@reduxjs/toolkit').Action<string>
   >;
+  export type ThemeScheme = 'light' | 'dark' | null | undefined;
 }

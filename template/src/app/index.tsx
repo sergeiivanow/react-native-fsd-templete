@@ -2,10 +2,10 @@ import {Appearance} from 'react-native';
 import React from 'react';
 import {Navigation} from 'react-native-navigation';
 import {withProviders} from './providers';
-import {Screens} from 'screens';
-import {welcomeRoot} from 'shared/navigation';
+import {Screens} from '../screens';
+import {welcomeRoot, setDefaultOptions} from 'shared/navigation';
 import {store} from './store';
-import {themes} from './theme';
+import {themes} from 'shared/theme';
 
 Screens.forEach((ScreenComponent: React.FC, key: string) => {
   Navigation.registerComponent(
@@ -15,39 +15,12 @@ Screens.forEach((ScreenComponent: React.FC, key: string) => {
   );
 });
 
-function setupNavigationTheme() {
-  const theme =
-    themes[
-      store.getState().appearance.theme ??
-        Appearance.getColorScheme() ??
-        'light'
-    ];
-  Navigation.setDefaultOptions({
-    statusBar: {
-      backgroundColor: theme.colors.backgroundDefault,
-    },
-    layout: {
-      backgroundColor: theme.colors.backgroundDefault,
-      componentBackgroundColor: theme.colors.backgroundDefault,
-    },
-    topBar: {
-      title: {
-        color: theme.colors.textDefault,
-      },
-      backButton: {
-        color: theme.colors.textDefault,
-      },
-      background: {
-        color: theme.colors.backgroundDefault,
-      },
-    },
-    bottomTabs: {
-      backgroundColor: theme.colors.backgroundDefault,
-    },
-  });
-}
+const theme =
+  themes[
+    store.getState().appearance.theme ?? Appearance.getColorScheme() ?? 'light'
+  ];
+setDefaultOptions(theme);
 
 Navigation.events().registerAppLaunchedListener(() => {
-  setupNavigationTheme();
   Navigation.setRoot(welcomeRoot);
 });
