@@ -1,9 +1,9 @@
 import Home from './Home';
 import Settings from './Settings';
 import Welcome from './Welcome';
-import * as Config from 'shared/config';
+import {Routes} from 'shared/navigation';
 
 export const Screens = new Map();
-Screens.set(Config.ScreenRoutes.Welcome, Welcome);
-Screens.set(Config.ScreenRoutes.Settings, Settings);
-Screens.set(Config.ScreenRoutes.Home, Home);
+Screens.set(Routes.Welcome, Welcome);
+Screens.set(Routes.Settings, Settings);
+Screens.set(Routes.Home, Home);

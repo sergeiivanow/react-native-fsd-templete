@@ -3,7 +3,7 @@ import React from 'react';
 import {Navigation} from 'react-native-navigation';
 import {withProviders} from './providers';
 import {Screens} from '../screens';
-import {welcomeRoot, setDefaultOptions} from 'shared/navigation';
+import {welcomeRoot, setDefaultOptionsWithTabs} from 'shared/navigation';
 import {store} from './store';
 import {themes} from 'shared/theme';
 
@@ -19,7 +19,7 @@ const theme =
   themes[
     store.getState().appearance.theme ?? Appearance.getColorScheme() ?? 'light'
   ];
-setDefaultOptions(theme);
+setDefaultOptionsWithTabs(theme);
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot(welcomeRoot);
