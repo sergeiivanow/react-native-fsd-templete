@@ -7,6 +7,7 @@ import {welcomeRoot, setNavigationThemeWithTabs} from 'shared/navigation';
 import {store} from './store';
 import {themes} from 'shared/theme';
 import {s} from 'shared/lang';
+import {persistor} from './store';
 
 Screens.forEach((ScreenComponent: React.FC, key: string) => {
   Navigation.registerComponent(
@@ -16,13 +17,16 @@ Screens.forEach((ScreenComponent: React.FC, key: string) => {
   );
 });
 
-const theme =
-  themes[
-    store.getState().appearance.theme ?? Appearance.getColorScheme() ?? 'light'
-  ];
-setNavigationThemeWithTabs(theme);
-s.setLanguage(store.getState().language.lang);
-
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setRoot(welcomeRoot);
+persistor.subscribe(() => {
+  const theme =
+    themes[
+      store.getState().appearance.theme ??
+        Appearance.getColorScheme() ??
+        'light'
+    ];
+  setNavigationThemeWithTabs(theme);
+  s.setLanguage(store.getState().language.lang);
+  Navigation.events().registerAppLaunchedListener(() => {
+    Navigation.setRoot(welcomeRoot);
+  });
 });
