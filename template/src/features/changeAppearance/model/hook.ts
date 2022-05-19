@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from 'shared/lib/hooks';
 import {change} from './slice';
 import {useTheme} from '@emotion/react';
 import {Navigation} from 'react-native-navigation';
-import {mainRoot, setDefaultOptionsWithTabs} from 'shared/navigation';
+import {mainRoot, setNavigationThemeWithTabs} from 'shared/navigation';
 
 export function useAppearance(
   {withEffect}: {withEffect: boolean} = {withEffect: false},
@@ -24,7 +24,7 @@ export function useAppearance(
       didMount.current = true;
       return;
     }
-    setDefaultOptionsWithTabs(theme, {currentTabIndex: 1});
+    setNavigationThemeWithTabs(theme, {currentTabIndex: 1});
     Navigation.setRoot(mainRoot);
   }, [theme, withEffect]);
 

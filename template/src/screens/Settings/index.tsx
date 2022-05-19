@@ -1,13 +1,16 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SwitcherAppearance} from 'features/changeAppearance/ui';
+import {SwitcherLanguage} from 'features/changeLanguage/ui';
 import {Screen, Font} from 'shared/ui';
+import {s} from 'shared/lang';
 
 const Settings = () => {
   return (
     <Screen style={styles.container}>
-      <Font>{'Settings'}</Font>
+      <Font>{s.settings}</Font>
       <SwitcherAppearance />
+      <SwitcherLanguage />
     </Screen>
   );
 };

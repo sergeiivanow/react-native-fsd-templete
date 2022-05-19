@@ -1,7 +1,8 @@
 import {Navigation, OptionsBottomTabs} from 'react-native-navigation';
 import {Theme} from '@emotion/react';
+import { Routes } from './routes';
 
-export function setDefaultOptionsWithTabs(
+export function setNavigationThemeWithTabs(
   theme: Theme,
   options?: OptionsBottomTabs,
 ) {
@@ -27,6 +28,44 @@ export function setDefaultOptionsWithTabs(
     bottomTabs: {
       backgroundColor: theme.colors.backgroundDefault,
       ...options,
+    },
+  });
+}
+
+export function setRootWithTabs(options?: OptionsBottomTabs) {
+  Navigation.setRoot({
+    root: {
+      bottomTabs: {
+        children: [
+          {
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: Routes.Home,
+                  },
+                },
+              ],
+            },
+          },
+          {
+            stack: {
+              children: [
+                {
+                  component: {
+                    name: Routes.Settings,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+        options: {
+          bottomTabs: {
+            ...options,
+          },
+        },
+      },
     },
   });
 }
