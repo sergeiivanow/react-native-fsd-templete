@@ -1,27 +1,26 @@
-import React from 'react';
-import {TextProps} from 'react-native';
-import {useCalcFluidSize} from '../../lib/hooks';
+import React from 'react'
+import {TextProps} from 'react-native'
 import {
   useTheme,
   FontSizes,
   FamilyNames,
   FontWeights,
   Colors,
-} from '@emotion/react';
-import styled from '@emotion/native';
+} from '@emotion/react'
+import styled from '@emotion/native'
 
 interface FontProps {
-  size?: FontSizes;
-  familyNames?: FamilyNames;
-  weight?: FontWeights;
-  color?: Colors;
-  children?: React.ReactNode;
+  size?: FontSizes
+  familyNames?: FamilyNames
+  weight?: FontWeights
+  color?: Colors
+  children?: React.ReactNode
 }
 
 const Text = styled.Text`
   include-font-padding: false;
   text-align-vertical: top;
-`;
+`
 
 export function Font({
   size,
@@ -31,20 +30,19 @@ export function Font({
   children,
   ...props
 }: FontProps & TextProps) {
-  const theme = useTheme();
-  const calc = useCalcFluidSize();
+  const theme = useTheme()
 
   return (
     <Text
       style={{
         fontFamily:
           theme.fontFamily[familyNames ?? 'roboto'][weight ?? 'regular'],
-        fontSize: calc(theme.fontSizes[size ?? 'medium']),
-        lineHeight: calc(theme.fontSizes[size ?? 'medium']),
+        fontSize: +theme.fontSizes[size ?? 'medium'],
+        lineHeight: +theme.fontSizes[size ?? 'medium'],
         color: theme.colors[color ?? 'textDefault'],
       }}
       {...props}>
       {children}
     </Text>
-  );
+  )
 }

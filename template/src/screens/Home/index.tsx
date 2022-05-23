@@ -1,14 +1,14 @@
-import React from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
-import {Font} from 'shared/ui';
+import React from 'react'
+import {StyleSheet, View} from 'react-native'
+// import {Font} from 'shared/ui';
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <Font size="medium">{'Medium size'}</Font>
+      {/* <Font size="medium">{'Medium size'}</Font> */}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-});
+})
 
-export default Home;
+export default Home

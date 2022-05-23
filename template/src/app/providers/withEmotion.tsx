@@ -1,6 +1,13 @@
-import React from 'react';
-import {EmotionProvider} from '../wrappers/EmotionProvider';
+import React from 'react'
+import {ThemeProvider} from '@emotion/react'
+import {themes} from '../theme'
+import {useAppearance} from 'features/changeAppearance/model'
+
+const EmotionProvider = ({children}: {children: React.ReactNode}) => {
+  const {themeScheme} = useAppearance()
+  return <ThemeProvider theme={themes[themeScheme]}>{children}</ThemeProvider>
+}
 
 export const withEmotion = (Component: React.FC) => (
   <EmotionProvider>{Component}</EmotionProvider>
-);
+)
