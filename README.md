@@ -22,6 +22,17 @@ npx react-native init MyApp --template https://github.com/sergeiivanow/react-nat
 - Design system
 - All the phrases in one place 
 
+## ⚡️ Integrations 
+
+- [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash)
+- [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv)
+- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
+
+## 🛠 Devtools 
+
+- [Redux Flipper](https://github.com/jk-gan/redux-flipper)
+- [useFlipper with React Navigation](https://reactnavigation.org/docs/devtools/#useflipper)
+
 ## 🔖 License
 
 This project is [MIT](LICENSE) licensed.
