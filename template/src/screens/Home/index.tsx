@@ -1,21 +1,11 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
-// import {Font} from 'shared/ui';
+import {ScreenCard, Font} from 'shared/ui'
+import {s} from 'shared/lang'
 
-const Home = () => {
+export const Home = () => {
   return (
-    <View style={styles.container}>
-      {/* <Font size="medium">{'Medium size'}</Font> */}
-    </View>
+    <ScreenCard>
+      <Font>{s.home}</Font>
+    </ScreenCard>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
-
-export default Home

@@ -1,18 +1,26 @@
 import React, {useState, useEffect} from 'react'
 import {StatusBar} from 'react-native'
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native'
-import {Root} from './navigators'
+import {
+  NavigationContainer,
+  DefaultTheme,
+  useNavigationContainerRef,
+} from '@react-navigation/native'
+import RNBootSplash from 'react-native-bootsplash'
+import {useFlipper} from '@react-navigation/devtools'
 import {withProviders} from '../providers'
-import {useLanguage} from 'features/changeLanguage/model'
-import {useAppearance} from 'features/changeAppearance/model'
+import {Root} from './navigators'
 import {themes} from '../theme'
 import {s} from 'shared/lang'
-import RNBootSplash from 'react-native-bootsplash'
+import {useLanguage} from 'features/changeLanguage'
+import {useAppearance} from 'features/changeAppearance'
 
 const AppNavigaton = () => {
+  const navigationRef = useNavigationContainerRef()
   const [isReady, setIsReady] = useState(false)
   const {lang} = useLanguage()
   const {themeScheme} = useAppearance()
+
+  useFlipper(navigationRef)
 
   useEffect(() => {
     s.setLanguage(lang)
@@ -28,6 +36,7 @@ const AppNavigaton = () => {
       <StatusBar barStyle="dark-content" />
       {isReady && (
         <NavigationContainer
+          ref={navigationRef}
           theme={{
             ...DefaultTheme,
             colors: themes[themeScheme].colors,

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch} from 'react-native'
-import {useAppearance} from '../model'
+import {useAppearance} from './model'
 
 export function SwitcherAppearance() {
   const {themeScheme, changeThemeScheme} = useAppearance()

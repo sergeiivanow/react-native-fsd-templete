@@ -1,22 +1,16 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
-import {SwitcherAppearance} from 'features/changeAppearance/ui'
-import {SwitcherLanguage} from 'features/changeLanguage/ui'
+import {ScreenCard, Font} from 'shared/ui'
+import {SwitcherAppearance} from 'features/changeAppearance'
+import {SwitcherLanguage} from 'features/changeLanguage'
+import {s} from 'shared/lang'
 
-const Settings = () => {
+export const Settings = () => {
   return (
-    <View style={styles.container}>
+    <ScreenCard>
+      <Font>{s.appearance}</Font>
       <SwitcherAppearance />
+      <Font>{s.language}</Font>
       <SwitcherLanguage />
-    </View>
+    </ScreenCard>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
-
-export default Settings

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Switch} from 'react-native'
 import {useLanguage} from './model/hook'
-import {useNavigation, StackActions} from '@react-navigation/native'
+import {useNavigation, CommonActions} from '@react-navigation/native'
 
 export function SwitcherLanguage() {
   const navigation = useNavigation()
@@ -9,7 +9,23 @@ export function SwitcherLanguage() {
 
   function handleOnChangeLanguage() {
     changeLanguage()
-    navigation.dispatch(StackActions.replace('main'))
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [
+          {
+            name: 'main',
+            state: {
+              routes: [
+                {
+                  name: 'settings',
+                },
+              ],
+            },
+          },
+        ],
+      }),
+    )
   }
 
   return <Switch value={lang === 'en'} onChange={handleOnChangeLanguage} />

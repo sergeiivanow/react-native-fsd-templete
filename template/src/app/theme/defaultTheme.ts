@@ -19,40 +19,39 @@ export const fontFamily = {
 }
 
 export const fontSizes = {
-  xxSmall: '10',
-  xSmall: '12',
-  small: '14',
-  medium: '16',
-  large: '20',
-  xLarge: '24',
-  xxLarge: '32',
+  xxSmall: '10px',
+  xSmall: '12px',
+  small: '14px',
+  medium: '16px',
+  large: '20px',
+  xLarge: '24px',
+  xxLarge: '32px',
 }
 
 export const lineHeights = {
-  xxSmall: '12',
-  xSmall: '14',
-  small: '16',
-  medium: '18',
-  large: '22',
-  xLarge: '26',
-  xxLarge: '34',
+  xxSmall: '12px',
+  xSmall: '14px',
+  small: '16px',
+  medium: '18px',
+  large: '22px',
+  xLarge: '26px',
+  xxLarge: '34px',
 }
 
 export const spaces = {
-  screenPadding: '20',
+  screenPadding: '20px',
 }
 
 export const sizes = {
-  avatar: '50',
+  avatar: '50px',
 }
 
 export const colors = {
-  textDefault: pallete.black,
   backgroundDefault: pallete.white,
-  primary: 'rgb(0, 122, 255)',
-  background: 'rgb(242, 242, 242)',
-  card: 'rgb(255, 255, 255)',
-  text: 'rgb(28, 28, 30)',
-  border: 'rgb(216, 216, 216)',
-  notification: 'rgb(255, 59, 48)',
+  primary: pallete.azureRadiance,
+  background: pallete.concrete,
+  card: pallete.white,
+  text: pallete.shark,
+  border: pallete.alto,
+  notification: pallete.redOrange,
 }

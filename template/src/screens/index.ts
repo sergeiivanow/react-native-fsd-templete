@@ -1,7 +1,7 @@
 import React from 'react'
-import Home from './Home'
-import Settings from './Settings'
-import Login from './Login'
+import {Home} from './Home'
+import {Settings} from './Settings'
+import {Login} from './Login'
 
 export const Screens = new Map<AppNavigation.Screens, React.FC>()
 

@@ -1,13 +1,7 @@
 import React from 'react'
 import {TextProps} from 'react-native'
-import {
-  useTheme,
-  FontSizes,
-  FamilyNames,
-  FontWeights,
-  Colors,
-} from '@emotion/react'
 import styled from '@emotion/native'
+import {FontSizes, FamilyNames, FontWeights, Colors} from '@emotion/react'
 
 interface FontProps {
   size?: FontSizes
@@ -17,32 +11,16 @@ interface FontProps {
   children?: React.ReactNode
 }
 
-const Text = styled.Text`
+export function Font(props: FontProps & TextProps) {
+  return <Text {...props}>{props.children}</Text>
+}
+
+const Text = styled.Text<Omit<FontProps, 'children'>>`
   include-font-padding: false;
   text-align-vertical: top;
+  font-family: ${({theme, familyNames, weight}) =>
+    theme.fontFamily[familyNames ?? 'roboto'][weight ?? 'regular']};
+  font-size: ${({theme, size}) => theme.fontSizes[size ?? 'medium']};
+  line-height: ${({theme, size}) => theme.lineHeights[size ?? 'medium']};
+  color: ${({theme, color}) => theme.colors[color ?? 'text']};
 `
-
-export function Font({
-  size,
-  familyNames,
-  weight,
-  color,
-  children,
-  ...props
-}: FontProps & TextProps) {
-  const theme = useTheme()
-
-  return (
-    <Text
-      style={{
-        fontFamily:
-          theme.fontFamily[familyNames ?? 'roboto'][weight ?? 'regular'],
-        fontSize: +theme.fontSizes[size ?? 'medium'],
-        lineHeight: +theme.fontSizes[size ?? 'medium'],
-        color: theme.colors[color ?? 'textDefault'],
-      }}
-      {...props}>
-      {children}
-    </Text>
-  )
-}

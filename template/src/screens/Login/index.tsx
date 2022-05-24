@@ -1,28 +1,19 @@
 import React from 'react'
+import {Button} from 'react-native'
 import {useNavigation, StackActions} from '@react-navigation/native'
-import {StyleSheet, View, Button} from 'react-native'
+import {ScreenCard} from 'shared/ui'
 import {s} from 'shared/lang'
 
-const Login = () => {
+export const Login = () => {
   const navigation = useNavigation()
   return (
-    <View style={styles.container}>
+    <ScreenCard>
       <Button
         title={s.login}
         onPress={() => {
           navigation.dispatch(StackActions.replace('main'))
         }}
       />
-    </View>
+    </ScreenCard>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
-
-export default Login

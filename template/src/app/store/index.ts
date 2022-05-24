@@ -1,10 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {appearanceReducer} from 'features/changeAppearance/model/slice'
-import {languageReducer} from 'features/changeLanguage/model/slice'
+import {appearanceReducer} from 'features/changeAppearance'
+import {languageReducer} from 'features/changeLanguage'
 import {
   persistStore,
   persistReducer,
-  Storage,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -13,46 +12,36 @@ import {
   REGISTER,
 } from 'redux-persist'
 import {combineReducers} from 'redux'
-
-import {MMKV} from 'react-native-mmkv'
+import {storage} from '../storage'
 
 const reducers = combineReducers({
   appearance: appearanceReducer,
   language: languageReducer,
 })
 
-export const storage = new MMKV()
-
-export const reduxStorage: Storage = {
-  setItem: (key, value) => {
-    storage.set(key, value)
-    return Promise.resolve(true)
-  },
-  getItem: key => {
-    const value = storage.getString(key)
-    return Promise.resolve(value)
-  },
-  removeItem: key => {
-    storage.delete(key)
-    return Promise.resolve()
-  },
-}
-
 const persistConfig = {
   key: 'root',
-  storage: reduxStorage,
+  storage,
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  middleware: getDefaultMiddleware => {
+    const middlewares = getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    })
+
+    if (__DEV__) {
+      const createDebugger = require('redux-flipper').default
+      middlewares.push(createDebugger())
+    }
+
+    return middlewares
+  },
 })
 
 export const persistor = persistStore(store)

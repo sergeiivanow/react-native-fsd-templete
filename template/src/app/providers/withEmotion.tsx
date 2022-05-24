@@ -1,7 +1,7 @@
 import React from 'react'
 import {ThemeProvider} from '@emotion/react'
 import {themes} from '../theme'
-import {useAppearance} from 'features/changeAppearance/model'
+import {useAppearance} from 'features/changeAppearance'
 
 const EmotionProvider = ({children}: {children: React.ReactNode}) => {
   const {themeScheme} = useAppearance()
