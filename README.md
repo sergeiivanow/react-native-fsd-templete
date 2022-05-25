@@ -1,4 +1,4 @@
-# 🧩 React Native Template Feature Sliced Design
+# 🧩 React Native Feature Sliced Design Template
 
 [![Feature-Sliced Design][shields-fsd-image]](https://feature-sliced.design/)
 
