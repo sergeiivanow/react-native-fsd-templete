@@ -1,6 +1,7 @@
 import {pallete} from './pallete'
+import {fluidType, fluidSize} from 'shared/lib'
 
-export const familyNames = {
+export const fontFamily = {
   roboto: 'roboto',
 }
 
@@ -10,7 +11,7 @@ export const fontWeights = {
   bold: 'bold',
 }
 
-export const fontFamily = {
+export const fontNames = {
   roboto: {
     regular: 'Roboto-Regular',
     medium: 'Roboto-Medium',
@@ -19,35 +20,28 @@ export const fontFamily = {
 }
 
 export const fontSizes = {
-  xxSmall: '10px',
-  xSmall: '12px',
-  small: '14px',
-  medium: '16px',
-  large: '20px',
-  xLarge: '24px',
-  xxLarge: '32px',
-}
-
-export const lineHeights = {
-  xxSmall: '12px',
-  xSmall: '14px',
-  small: '16px',
-  medium: '18px',
-  large: '22px',
-  xLarge: '26px',
-  xxLarge: '34px',
+  xxSmall: fluidType({min: 10, max: 12}) + 'px',
+  xSmall: fluidType({min: 12, max: 14}) + 'px',
+  small: fluidType({min: 14, max: 16}) + 'px',
+  medium: fluidType({min: 16, max: 18}) + 'px',
+  large: fluidType({min: 20, max: 22}) + 'px',
+  xLarge: fluidType({min: 24, max: 26}) + 'px',
+  xxLarge: fluidType({min: 32, max: 34}) + 'px',
 }
 
 export const spaces = {
-  screenPadding: '20px',
-}
-
-export const sizes = {
-  avatar: '50px',
+  xxSmall: fluidSize({min: 10, max: 12}) + 'px',
+  xSmall: fluidSize({min: 12, max: 14}) + 'px',
+  small: fluidSize({min: 14, max: 16}) + 'px',
+  medium: fluidSize({min: 16, max: 18}) + 'px',
+  large: fluidSize({min: 20, max: 22}) + 'px',
+  xLarge: fluidSize({min: 24, max: 26}) + 'px',
+  xxLarge: fluidSize({min: 32, max: 34}) + 'px',
 }
 
 export const colors = {
   backgroundDefault: pallete.white,
+  // navigation
   primary: pallete.azureRadiance,
   background: pallete.concrete,
   card: pallete.white,

@@ -2,22 +2,18 @@ import '@emotion/react'
 import {
   fontSizes,
   fontWeights,
-  familyNames,
-  lineHeights,
+  fontFamily,
   spaces,
-  sizes,
   colors,
 } from 'app/theme/defaultTheme'
 
 declare module '@emotion/react' {
   export type FontSizes = keyof typeof fontSizes
   export type FontWeights = keyof typeof fontWeights
-  export type FamilyNames = keyof typeof familyNames
-  export type LineHeights = keyof typeof lineHeights
+  export type FontFamily = keyof typeof fontFamily
   export type Spaces = keyof typeof spaces
-  export type Sizes = keyof typeof sizes
   export type Colors = keyof typeof colors
-  type FontFamily = {
+  type FontNames = {
     [key in FontWeights]: string
   }
 
@@ -25,16 +21,12 @@ declare module '@emotion/react' {
     fontWeights: {
       [key in FontWeights]: string
     }
-    familyNames: {[key in FamilyNames]: string}
-    fontFamily: {
-      [key in FamilyNames]: FontFamily
+    fontFamily: {[key in FontFamily]: string}
+    fontNames: {
+      [key in FontFamily]: FontNames
     }
     fontSizes: {[key in FontSizes]: string}
-    lineHeights: {
-      [key in LineHeights]: stirng
-    }
     spaces: {[key in Spaces]: string}
-    sizes: {[key in Sizes]: string}
     colors: {[key in Colors]: string}
   }
 
