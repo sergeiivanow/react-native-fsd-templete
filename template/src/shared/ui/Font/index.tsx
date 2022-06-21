@@ -11,11 +11,12 @@ interface FontProps {
   color?: Colors
   children?: React.ReactNode
   underline?: boolean
+  alignCenter?: boolean
 }
 
 const Text = styled.Text<Omit<FontProps, 'children'>>`
   include-font-padding: false;
-  text-align-vertical: top;
+  text-align-vertical: center;
   font-family: ${({theme, family, weight}) =>
     theme.fontNames[family ?? 'roboto'][weight ?? 'regular']};
   font-size: ${({theme, size}) => theme.fontSizes[size ?? 'medium']};
@@ -27,6 +28,7 @@ const Text = styled.Text<Omit<FontProps, 'children'>>`
   }};
   color: ${({theme, color}) => theme.colors[color ?? 'text']};
   text-decoration-line: ${({underline}) => (underline ? 'underline' : 'none')};
+  text-align: ${({alignCenter}) => (alignCenter ? 'center' : 'auto')};
 `
 
 export function Font(props: FontProps & TextProps) {

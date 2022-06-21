@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
-import {StatusBar} from 'react-native'
 import {
   NavigationContainer,
   DefaultTheme,
   useNavigationContainerRef,
 } from '@react-navigation/native'
+import {SystemBars} from 'react-native-bars'
 import RNBootSplash from 'react-native-bootsplash'
 import {useFlipper} from '@react-navigation/devtools'
 import {withProviders} from '../providers'
@@ -19,6 +19,7 @@ const AppNavigaton = () => {
   const [isReady, setIsReady] = useState(false)
   const {lang} = useLanguage()
   const {themeScheme} = useAppearance()
+  const [systemBarsIsReady, setSystemBarsIsReady] = useState(false)
 
   useFlipper(navigationRef)
 
@@ -28,12 +29,20 @@ const AppNavigaton = () => {
   }, [lang])
 
   function handleOnReady() {
-    RNBootSplash.hide({fade: true})
+    RNBootSplash.hide({fade: true}).then(() => {
+      setTimeout(() => {
+        setSystemBarsIsReady(true)
+      }, 200)
+    })
   }
 
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+       {systemBarsIsReady && (
+        <SystemBars
+          barStyle={themeScheme === 'light' ? 'dark-content' : 'light-content'}
+        />
+      )}
       {isReady && (
         <NavigationContainer
           ref={navigationRef}
