@@ -12,10 +12,10 @@ npx react-native init MyApp --template https://github.com/sergeiivanow/react-nat
 
 ## 🚀 Core Stack
 
-- [React Native](https://reactnative.dev) `0.68.2`
-- [React Navigation](https://reactnavigation.org/docs/getting-started) `6.0.10`
+- [React Native](https://reactnative.dev) `0.71.4`
+- [React Navigation](https://reactnavigation.org/docs/getting-started) `6.1.6`
 - [Redux Toolkit](https://redux-toolkit.js.org) `1.8.1`
-- [TypeScript](https://www.typescriptlang.org) `4.6.3`
+- [TypeScript](https://www.typescriptlang.org) `4.8.4`
 
 ## ⭐️ Features
 
@@ -24,7 +24,6 @@ npx react-native init MyApp --template https://github.com/sergeiivanow/react-nat
 
 ## ⚡️ Integrations 
 
-- [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash)
 - [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv)
 - [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated)
 

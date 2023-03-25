@@ -13,9 +13,9 @@ export const fontWeights = {
 
 export const fontNames = {
   roboto: {
-    regular: 'Roboto-Regular',
-    medium: 'Roboto-Medium',
-    bold: 'Roboto-Bold',
+    regular: '',
+    medium: '',
+    bold: '',
   },
 }
 
