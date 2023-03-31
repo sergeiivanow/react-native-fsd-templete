@@ -12,6 +12,9 @@ interface FontProps {
   children?: React.ReactNode
   underline?: boolean
   alignCenter?: boolean
+  textAlign?: 'left' | 'auto' | 'center' | 'right' | 'justify'
+  textTransform?: 'capitalize' | 'lowercase' | 'none' | 'uppercase'
+  devMode?: boolean
 }
 
 const Text = styled.Text<Omit<FontProps, 'children'>>`
@@ -28,9 +31,14 @@ const Text = styled.Text<Omit<FontProps, 'children'>>`
   }};
   color: ${({theme, color}) => theme.colors[color ?? 'text']};
   text-decoration-line: ${({underline}) => (underline ? 'underline' : 'none')};
-  text-align: ${({alignCenter}) => (alignCenter ? 'center' : 'auto')};
+  text-align: ${({textAlign}) => textAlign ?? 'auto'};
+  text-transform: ${({textTransform}) => textTransform ?? 'none'};
 `
 
 export function Font(props: FontProps & TextProps) {
-  return <Text {...props}>{props.children}</Text>
+  return (
+    <Text adjustsFontSizeToFit {...props}>
+      {props.devMode ? props.size : props.children}
+    </Text>
+  )
 }

@@ -1,4 +1,5 @@
 export const pallete = {
+  transparent: 'transparent',
   black: '#000000',
   white: '#FFFFFF',
   azureRadiance: '#007AFF',

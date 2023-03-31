@@ -1,5 +1,5 @@
 import {pallete} from './pallete'
-import {fluidType, fluidSize} from 'shared/lib'
+import {fluidType} from 'shared/lib'
 
 export const fontFamily = {
   roboto: 'roboto',
@@ -30,6 +30,7 @@ export const fontSizes = {
 }
 
 export const colors = {
+  empty: pallete.transparent,
   backgroundDefault: pallete.white,
   // navigation
   primary: pallete.azureRadiance,
