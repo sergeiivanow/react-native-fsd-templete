@@ -3,22 +3,23 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {Screens} from 'screens'
 import {configureTabOptions} from '../../options'
 import {s} from 'shared/lang'
+import {ScreenRoutes} from 'shared/config'
 
 const Tab = createBottomTabNavigator<AppNavigation.MainNavigator>()
 
 export const Main = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="home"
-      component={Screens.get('home')!}
+      name={ScreenRoutes.Home}
+      component={Screens.get(ScreenRoutes.Home)!}
       options={configureTabOptions({
         headerShown: true,
         title: s.home,
       })}
     />
     <Tab.Screen
-      name="settings"
-      component={Screens.get('settings')!}
+      name={ScreenRoutes.Settings}
+      component={Screens.get(ScreenRoutes.Settings)!}
       options={configureTabOptions({
         headerShown: true,
         title: s.settings,

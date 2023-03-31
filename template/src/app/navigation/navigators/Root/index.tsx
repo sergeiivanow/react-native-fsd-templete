@@ -4,14 +4,15 @@ import {Main} from '../Main'
 import {Welcome} from '../Welcome'
 import {configureOptions} from '../../options'
 import {s} from 'shared/lang'
+import {NavigatorRoutes} from 'shared/config'
 
 const RootStack = createNativeStackNavigator<AppNavigation.Root>()
 
 export const Root = () => {
   return (
-    <RootStack.Navigator initialRouteName="welcome">
+    <RootStack.Navigator initialRouteName={NavigatorRoutes.Welcome}>
       <RootStack.Screen
-        name={'welcome'}
+        name={NavigatorRoutes.Welcome}
         component={Welcome}
         options={configureOptions({
           headerShown: true,
@@ -19,7 +20,7 @@ export const Root = () => {
         })}
       />
       <RootStack.Screen
-        name="main"
+        name={NavigatorRoutes.Main}
         component={Main}
         options={configureOptions()}
       />
