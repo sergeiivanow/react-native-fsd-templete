@@ -1,12 +1,12 @@
 import {Dimensions} from 'react-native'
 
-const {width, height} = Dimensions.get('window')
+export const {width, height} = Dimensions.get('window')
 
 const config = {
   minWidth: 320,
-  maxWidth: 390,
-  minHeight: 500,
-  maxHeight: 700,
+  maxWidth: 428,
+  minHeight: 480,
+  maxHeight: 926,
 }
 
 interface Constraint {
@@ -16,7 +16,16 @@ interface Constraint {
 
 type FluidType = Constraint
 
-export const fluidType = ({min: minFontSize, max: maxFontSize}: FluidType) => {
+export const fluidType = (value: FluidType | number) => {
+  let options = value
+  if (typeof value === 'number') {
+    options = {
+      min: value * 0.8,
+      max: value,
+    } as FluidType
+  }
+  const {min: minFontSize, max: maxFontSize} = options as FluidType
+
   switch (true) {
     case width <= config.minWidth:
       return minFontSize
@@ -36,12 +45,21 @@ type FluidSize = Constraint & {
   axis?: 'horizontal' | 'vertical'
 }
 
-export const fluidSize = ({
-  min,
-  max,
-  scale = 1,
-  axis = 'horizontal',
-}: FluidSize) => {
+export const fluidSize = (
+  value: FluidSize | number,
+  _axis: 'horizontal' | 'vertical' = 'horizontal',
+) => {
+  let options = value
+  if (typeof value === 'number') {
+    options = {
+      min: value * 0.75,
+      max: value,
+      scale: 1,
+      axis: _axis,
+    } as FluidSize
+  }
+  const {min, max, scale = 1, axis = 'horizontal'} = options as FluidSize
+
   const minSize = min * scale
   const maxSize = max * scale
   const isHorizontal = axis === 'horizontal'
