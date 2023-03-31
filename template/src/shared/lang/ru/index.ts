@@ -3,6 +3,5 @@ export const ru = {
   home: 'Главаня',
   settings: 'Настройки',
   appearance: 'Внешний вид',
-  language: 'Язык',
   welcome: 'Добро пожаловать',
 }

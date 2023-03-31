@@ -3,6 +3,5 @@ export const en = {
   home: 'Home',
   settings: 'Settings',
   appearance: 'Appearance',
-  language: 'Language',
   welcome: 'Welcome',
 }

@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
 import {appearanceReducer} from 'features/changeAppearance'
-import {languageReducer} from 'features/changeLanguage'
 import {
   persistStore,
   persistReducer,
@@ -16,7 +15,6 @@ import {storage} from '../storage'
 
 const reducers = combineReducers({
   appearance: appearanceReducer,
-  language: languageReducer,
 })
 
 const persistConfig = {
