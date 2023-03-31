@@ -1,11 +1,11 @@
-import {pallete} from './pallete'
+import {palette} from './palette'
 
 export const colors = {
-  backgroundDefault: pallete.black,
-  primary: pallete.azureRadiance,
-  background: pallete.black,
-  card: pallete.codGray,
-  text: pallete.iron,
-  border: pallete.shark,
-  notification: pallete.redOrange,
+  backgroundDefault: palette.black,
+  primary: palette.azureRadiance,
+  background: palette.black,
+  card: palette.codGray,
+  text: palette.iron,
+  border: palette.shark,
+  notification: palette.redOrange,
 }

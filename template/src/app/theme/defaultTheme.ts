@@ -1,4 +1,4 @@
-import {pallete} from './pallete'
+import {palette} from './palette'
 import {fluidType} from 'shared/lib'
 
 export const fontFamily = {
@@ -30,13 +30,13 @@ export const fontSizes = {
 }
 
 export const colors = {
-  empty: pallete.transparent,
-  backgroundDefault: pallete.white,
+  empty: palette.transparent,
+  backgroundDefault: palette.white,
   // navigation
-  primary: pallete.azureRadiance,
-  background: pallete.concrete,
-  card: pallete.white,
-  text: pallete.shark,
-  border: pallete.alto,
-  notification: pallete.redOrange,
+  primary: palette.azureRadiance,
+  background: palette.concrete,
+  card: palette.white,
+  text: palette.shark,
+  border: palette.alto,
+  notification: palette.redOrange,
 }
