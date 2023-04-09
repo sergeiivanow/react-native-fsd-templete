@@ -10,7 +10,7 @@ const RootStack = createNativeStackNavigator<AppNavigation.Root>()
 
 export const Root = () => {
   return (
-    <RootStack.Navigator initialRouteName={NavigatorRoutes.Welcome}>
+    <RootStack.Navigator initialRouteName={NavigatorRoutes.Main}>
       <RootStack.Screen
         name={NavigatorRoutes.Welcome}
         component={Welcome}

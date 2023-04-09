@@ -13,7 +13,6 @@ export const Main = () => (
       name={ScreenRoutes.Home}
       component={Screens.get(ScreenRoutes.Home)!}
       options={configureTabOptions({
-        headerShown: true,
         title: s.home,
       })}
     />
@@ -21,7 +20,6 @@ export const Main = () => (
       name={ScreenRoutes.Settings}
       component={Screens.get(ScreenRoutes.Settings)!}
       options={configureTabOptions({
-        headerShown: true,
         title: s.settings,
       })}
     />

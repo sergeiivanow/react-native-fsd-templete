@@ -1,0 +1,76 @@
+on:
+  # pull_request:
+
+name: Test
+
+env:
+  DIAWI_TOKEN: ${{ secrets.DIAWI_TOKEN }}
+  TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+  TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Install npm packages
+        run: yarn install
+
+      - name: Run tests
+        run: yarn run test
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.6'
+          bundler-cache: true
+
+      - name: Modify directory permissions
+        run: sudo chmod -R 777 /var/lib/gems/3.0.0
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      - name: Build and sign Android
+        run: | 
+          echo "${{ secrets.ANDROID_RELEASE_KEYSTORE_FILE }}" | base64 -d > ${{ github.workspace }}/fastlane/credentials/android-release.keystore
+          fastlane android test_build
+        env:
+          ANDROID_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD }}
+          ANDROID_RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_RELEASE_KEY_ALIAS }}
+          ANDROID_RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD }}
+
+      - name: Setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: Auto commit
+        run: |
+          git add android/app/build.gradle ios/**/*.{pbxproj,plist}
+          git commit -m 'auto: Increment build number'
+          git push
+
+      - name: Upload build to Diawi
+        run: |
+          fastlane android upload_build_to_diawi
+          
+      - name: Send a message to Telegram about the crash of the assembly
+        if: ${{ failure() }}
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            💥 Jobs link: 
+            https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            

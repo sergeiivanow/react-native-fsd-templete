@@ -1,11 +1,10 @@
 import React from 'react'
-import {ScreenCard, Font} from 'shared/ui'
-import {s} from 'shared/lang'
+import * as UI from 'shared/ui'
 
 export const Home = () => {
   return (
-    <ScreenCard>
-      <Font>{s.home}</Font>
-    </ScreenCard>
+    <UI.Container>
+      <UI.TextButton title="Добавить приём пищи" />
+    </UI.Container>
   )
 }

@@ -1,13 +1,14 @@
 import React from 'react'
-import {ScreenCard, Font} from 'shared/ui'
+import * as UI from 'shared/ui'
+import {Font} from 'shared/ui'
 import {SwitcherAppearance} from 'features/changeAppearance'
 import {s} from 'shared/lang'
 
 export const Settings = () => {
   return (
-    <ScreenCard>
+    <UI.Container>
       <Font>{s.appearance}</Font>
       <SwitcherAppearance />
-    </ScreenCard>
+    </UI.Container>
   )
 }

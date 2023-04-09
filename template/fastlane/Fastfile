@@ -1,0 +1,92 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+default_platform(:android)
+
+PROJECT_DIRECTORY = File.expand_path("..", Dir.pwd)
+
+ANDROID_RELEASE_KEYSTORE_FILE_PATH = File.join(PROJECT_DIRECTORY, "/fastlane/credentials/android-release.keystore")
+ANDROID_RELEASE_APK_FILE_PATH = File.join(PROJECT_DIRECTORY, "/android/app/build/outputs/apk/release/app-release.apk")
+ANDROID_GOOGLE_SERVICE_KEY_JSON_PATH = File.join(PROJECT_DIRECTORY, "/fastlane/credentials/google-service-api-key.json")
+ANDROID_RELEASE_AAB_FILE_PATH = File.join(PROJECT_DIRECTORY, "/android/app/build/outputs/bundle/release/app-release.aab")
+
+last_tag = last_git_tag().to_s
+CURRENT_VERSION = last_tag.start_with?("v") ? last_tag.sub("v", "") : "1.0.0"
+
+platform :android do
+  def build
+    gradle(
+      tasks: ["clean", "assembleRelease", "bundleRelease"],
+      project_dir: "android",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ANDROID_RELEASE_KEYSTORE_FILE_PATH,
+        "android.injected.signing.store.password" => ENV["ANDROID_RELEASE_KEY_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["ANDROID_RELEASE_KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["ANDROID_RELEASE_KEY_PASSWORD"],
+      }
+    )
+  end
+
+  lane :test_build do
+    Dir.chdir("..") do
+      sh("npx react-native-version --increment-build --target android")
+    end
+    build()
+  end
+
+  lane :release_build do
+    begin
+      sh("npm version #{CURRENT_VERSION} --no-git-tag-version")
+    rescue StandardError => error
+      puts "An error occurred>>: #{error.message}"
+      Dir.chdir("..") do
+        sh("npx react-native-version --increment-build --target android")
+      end
+    end
+    build()
+  end
+  
+  lane :upload_build_to_diawi do
+    diawi(
+      token: ENV["DIAWI_TOKEN"],
+      file: ANDROID_RELEASE_APK_FILE_PATH,
+    )
+
+    result_url = lane_context[SharedValues::UPLOADED_FILE_LINK_TO_DIAWI]
+
+    path = PROJECT_DIRECTORY + "/android/app/build.gradle"
+    re = /versionCode\s+(\d+)/
+
+    s = File.read(path)
+    versionCode = s[re, 1].to_i
+
+    sh("curl -X POST 'https://api.telegram.org/bot#{ENV["TELEGRAM_TOKEN"]}/sendMessage' -d 'chat_id=#{ENV["TELEGRAM_CHAT_ID"]}&text=🔥 New version #{CURRENT_VERSION}(#{versionCode})\nInstallation link .apk \n#{result_url}'")
+  end
+
+  lane :deploy do
+    upload_to_play_store(
+      package_name: 'ru.sivanow.AwesomeProject',
+      track: 'internal',
+      release_status: 'draft',
+      skip_upload_apk: true,
+      json_key: ANDROID_GOOGLE_SERVICE_KEY_JSON_PATH,
+      aab: ANDROID_RELEASE_AAB_FILE_PATH,
+    )
+  end
+end
+
+platform :ios do
+  lane :build do
+    build_app(
+      configuration: "Release",
+      export_method: "ad-hoc",
+      scheme: 'AwesomeProject',
+      workspace:  "ios/AwesomeProject.xcworkspace",
+      skip_codesigning: true,
+      skip_package_ipa: true,
+      output_directory: 'fastlane',
+      output_name: 'app-release.ipa',
+      archive_path: "fastlane/build/AwesomeProject.xcarchive"
+    )
+  end
+end
