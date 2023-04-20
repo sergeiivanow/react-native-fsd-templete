@@ -14,8 +14,6 @@
     "storybook": "sb-rn-get-stories && NODE_ENV=storybook react-native start --reset-cache"
   },
   "dependencies": {
-    "@emotion/native": "11.10.6",
-    "@emotion/react": "11.10.6",
     "@react-navigation/bottom-tabs": "6.5.7",
     "@react-navigation/devtools": "6.0.18",
     "@react-navigation/native": "6.1.6",

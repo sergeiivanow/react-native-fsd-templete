@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {appearanceReducer} from 'features/changeAppearance'
 import {
   persistStore,
   persistReducer,
@@ -11,11 +10,9 @@ import {
   REGISTER,
 } from 'redux-persist'
 import {combineReducers} from 'redux'
-import {storage} from '../storage'
+import {storage} from '../../shared/storage'
 
-const reducers = combineReducers({
-  appearance: appearanceReducer,
-})
+const reducers = combineReducers({})
 
 const persistConfig = {
   key: 'root',

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Switch} from 'react-native'
-import {useAppearance} from './model'
+import {useTheme} from 'shared/theme'
 
 export function SwitcherAppearance() {
-  const {themeScheme, changeThemeScheme} = useAppearance()
-  return <Switch value={themeScheme === 'dark'} onChange={changeThemeScheme} />
+  const {themeScheme, toggleTheme} = useTheme()
+  return <Switch value={themeScheme === 'dark'} onChange={toggleTheme} />
 }

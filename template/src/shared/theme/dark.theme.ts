@@ -1,6 +1,7 @@
-import {palette} from './palette'
+import {palette} from './theme.palette'
 
 export const colors = {
+  empty: palette.transparent,
   backgroundDefault: palette.black,
   primary: palette.azureRadiance,
   background: palette.black,

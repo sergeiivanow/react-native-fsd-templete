@@ -7,12 +7,11 @@ import {
 import {useFlipper} from '@react-navigation/devtools'
 import {withProviders} from '../providers'
 import {Root} from './navigators'
-import {themes} from '../theme'
-import {useAppearance} from 'features/changeAppearance'
+import {useTheme} from 'shared/theme'
 
 const AppNavigaton = () => {
   const navigationRef = useNavigationContainerRef()
-  const {themeScheme} = useAppearance()
+  const {theme} = useTheme()
 
   useFlipper(navigationRef)
 
@@ -21,7 +20,7 @@ const AppNavigaton = () => {
       ref={navigationRef}
       theme={{
         ...DefaultTheme,
-        colors: themes[themeScheme].colors,
+        colors: theme.colors,
       }}>
       <Root />
     </NavigationContainer>

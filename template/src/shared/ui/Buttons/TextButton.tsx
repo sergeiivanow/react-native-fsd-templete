@@ -1,21 +1,9 @@
 import React from 'react'
-import {ActivityIndicator} from 'react-native'
+import {ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native'
 import {TouchableOpacityProps} from 'react-native'
-import styled from '@emotion/native'
-import {Colors} from '@emotion/react'
 import {fluidSize} from '../../lib'
-
+import {Colors, useStyles} from '../../theme'
 import {Font} from '../Font'
-
-const StyledTextButton = styled.TouchableOpacity<
-  ButtonProps & TouchableOpacityProps
->`
-  width: 100%;
-  height: ${fluidSize(44, 'vertical') + 'px'};
-  border-radius: ${fluidSize(8) + 'px'};
-  justify-content: center;
-  align-items: center;
-`
 
 export interface ButtonProps {
   title: string
@@ -27,11 +15,13 @@ export interface ButtonProps {
 }
 
 export function TextButton(props: ButtonProps & TouchableOpacityProps) {
+  const {styles} = useStyles(createStyles)
   return (
-    <StyledTextButton
+    <TouchableOpacity
       disabled={props.disabled || props.loading}
       activeOpacity={0.8}
       color={props.color}
+      style={styles.container}
       {...props}>
       {props.loading ? (
         <ActivityIndicator testID="loading" />
@@ -44,6 +34,17 @@ export function TextButton(props: ButtonProps & TouchableOpacityProps) {
           {props.title ?? ''}
         </Font>
       )}
-    </StyledTextButton>
+    </TouchableOpacity>
   )
 }
+
+const createStyles = () =>
+  StyleSheet.create({
+    container: {
+      width: '100%',
+      height: fluidSize(44, 'vertical'),
+      borderRadius: fluidSize(8),
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  })

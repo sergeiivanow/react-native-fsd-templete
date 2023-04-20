@@ -1,12 +1,11 @@
 import {View} from 'react-native'
 import {withBackgrounds} from '@storybook/addon-ondevice-backgrounds'
-import {ThemeProvider} from '@emotion/react'
-import {themes} from '../src/app/theme'
+import {ThemeProvider} from '../src/shared/theme'
 
 export const decorators = [
   withBackgrounds,
   Story => (
-    <ThemeProvider theme={themes.light}>
+    <ThemeProvider>
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
         <Story />
       </View>
@@ -20,5 +19,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-};
-
+}

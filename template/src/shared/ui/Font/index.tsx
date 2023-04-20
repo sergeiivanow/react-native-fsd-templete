@@ -1,7 +1,13 @@
 import React from 'react'
-import {TextProps} from 'react-native'
-import styled from '@emotion/native'
-import {FontSizes, FontFamily, FontWeights, Colors} from '@emotion/react'
+import {TextProps, StyleSheet, Text} from 'react-native'
+import {
+  FontSizes,
+  FontFamily,
+  FontWeights,
+  Colors,
+  useStyles,
+  Theme,
+} from '../../theme'
 
 interface FontProps {
   size?: FontSizes
@@ -17,28 +23,31 @@ interface FontProps {
   devMode?: boolean
 }
 
-const Text = styled.Text<Omit<FontProps, 'children'>>`
-  include-font-padding: false;
-  text-align-vertical: center;
-  font-family: ${({theme, family, weight}) =>
-    theme.fontNames[family ?? 'roboto'][weight ?? 'regular']};
-  font-size: ${({theme, size}) => theme.fontSizes[size ?? 'medium']};
-  line-height: ${({theme, size, lineHeight}) => {
-    if (!lineHeight) {
-      return lineHeight // auto
-    }
-    return lineHeight * parseInt(theme.fontSizes[size ?? 'medium'], 10) + 'px'
-  }};
-  color: ${({theme, color}) => theme.colors[color ?? 'text']};
-  text-decoration-line: ${({underline}) => (underline ? 'underline' : 'none')};
-  text-align: ${({textAlign}) => textAlign ?? 'auto'};
-  text-transform: ${({textTransform}) => textTransform ?? 'none'};
-`
-
 export function Font(props: FontProps & TextProps) {
+  const {styles} = useStyles(createStyles({weight: props.weight}))
   return (
-    <Text adjustsFontSizeToFit {...props}>
+    <Text adjustsFontSizeToFit {...props} style={styles.container}>
       {props.devMode ? props.size : props.children}
     </Text>
   )
 }
+
+const createStyles =
+  (props: {weight?: FontWeights; lineHeight?: number; size?: FontSizes}) =>
+  (theme: Theme) => {
+    let lineHeight = props.lineHeight
+    if (lineHeight) {
+      lineHeight = lineHeight * theme.fontSizes[props.size ?? 'medium']
+    }
+    return StyleSheet.create({
+      container: {
+        lineHeight,
+        height: 40,
+        includeFontPadding: false,
+        textAlignVertical: 'center',
+        fontFamily: theme.fontNames.roboto[props.weight ?? 'medium'],
+        fontSize: theme.fontSizes.medium,
+        color: theme.colors.text,
+      },
+    })
+  }
