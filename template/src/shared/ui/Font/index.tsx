@@ -24,7 +24,7 @@ interface FontProps {
 }
 
 export function Font(props: FontProps & TextProps) {
-  const {styles} = useStyles(createStyles({weight: props.weight}))
+  const {styles} = useStyles(createStyles(props))
   return (
     <Text adjustsFontSizeToFit {...props} style={styles.container}>
       {props.devMode ? props.size : props.children}
@@ -32,22 +32,19 @@ export function Font(props: FontProps & TextProps) {
   )
 }
 
-const createStyles =
-  (props: {weight?: FontWeights; lineHeight?: number; size?: FontSizes}) =>
-  (theme: Theme) => {
-    let lineHeight = props.lineHeight
-    if (lineHeight) {
-      lineHeight = lineHeight * theme.fontSizes[props.size ?? 'medium']
-    }
-    return StyleSheet.create({
-      container: {
-        lineHeight,
-        height: 40,
-        includeFontPadding: false,
-        textAlignVertical: 'center',
-        fontFamily: theme.fontNames.roboto[props.weight ?? 'medium'],
-        fontSize: theme.fontSizes.medium,
-        color: theme.colors.text,
-      },
-    })
+const createStyles = (props: FontProps) => (theme: Theme) => {
+  let lineHeight = props.lineHeight
+  if (lineHeight) {
+    lineHeight = lineHeight * theme.fontSizes[props.size ?? 'medium']
   }
+  return StyleSheet.create({
+    container: {
+      lineHeight,
+      includeFontPadding: false,
+      textAlignVertical: 'center',
+      fontFamily: theme.fontNames.roboto[props.weight ?? 'medium'],
+      fontSize: theme.fontSizes[props.size ?? 'medium'],
+      color: theme.colors[props.color ?? 'text'],
+    },
+  })
+}
